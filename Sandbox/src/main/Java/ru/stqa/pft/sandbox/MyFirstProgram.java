@@ -1,7 +1,6 @@
 package ru.stqa.pft.sandbox;
 
 
-import ru.stqa.pft.dz.Point;
 
 public class MyFirstProgram {
 
