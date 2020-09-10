@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 
 public class HelperBase {
 
-  private WebDriver wd;
+  public WebDriver wd;
 
   public HelperBase(WebDriver wd) {
     this.wd = wd;
@@ -33,9 +33,9 @@ public class HelperBase {
     wd.switchTo().alert().accept();
   }
 
-  public boolean isElementPresent(By by) {
+  public boolean isElementPresent(By locator) {
     try {
-      wd.findElement(by);
+      wd.findElement(locator);
       return true;
     } catch (NoSuchElementException e) {
       return false;
