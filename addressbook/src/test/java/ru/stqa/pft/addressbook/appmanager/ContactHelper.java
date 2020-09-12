@@ -37,7 +37,7 @@ public class ContactHelper extends HelperBase{
   }
 
   public void selectEdit() {
-    click(By.xpath("(//img[@alt='Edit'])[2]"));
+    click(By.xpath("(//img[@alt='Edit'])"));
   }
 
   public void updateContactPage() {
@@ -62,5 +62,9 @@ public class ContactHelper extends HelperBase{
 
   public boolean isTheareAContact() {
     return isElementPresent(By.name("selected[]"));
+  }
+
+  public int getContactCount() {
+    return wd.findElements(By.name("selected[]")).size();
   }
 }
