@@ -17,5 +17,12 @@ public class ContactCreationTests extends TestBase {
     List<ContactData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size() +1);
   }
-
+  @Test
+  public void testContactCreation1() {
+    List<ContactData> before = app.getContactHelper().getContactList();
+    app.getContactHelper().initContact();
+    app.getContactHelper().createContact(new ContactData("Timon", "Puba", "azino333@mail.ru", "89111226644", "Test1"), true);
+    List<ContactData> after = app.getContactHelper().getContactList();
+    Assert.assertEquals(after.size(), before.size() +1);
+  }
 }
