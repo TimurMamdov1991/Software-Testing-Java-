@@ -1,36 +1,35 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactModificationTests extends TestBase {
 
-  @Test(enabled = false)
-  public void testContactModification(){
-    app.getContactHelper().getContactPage();
-    if (! app.getContactHelper().isTheareAContact()) {
-      app.getContactHelper().createContact(new ContactData("Timon", "Puba", "azino333@mail.ru", "89111226644", "Test1"), true);
+  @BeforeMethod
+  public void ensurePreconditions(){
+    if (app.contact().all().size() == 0) {
+      app.contact().createContact(new ContactData().withFirstName("Tima").withLastname("Puba").withMail("azino333@mail.ru").withNumber("89111226644").withGroup("Test1"), true);
     }
-    List<ContactData> before = app.getContactHelper().getContactList();
-    app.getContactHelper().selectEdit(before.size() -1);
-    ContactData contact = new ContactData(before.get(before.size() - 1).getId(),"Qe", "qwe", "qwe@mail.ru", "111111111", null);
-    app.getContactHelper().fillContactPage( contact,false);
-    app.getContactHelper().updateContactPage();
-    app.getContactHelper().getContactPage();
-    List<ContactData> after = app.getContactHelper().getContactList();
-    Assert.assertEquals(after.size(),before.size());
-
-    before.remove(before.size() -1);
-    before.add(contact);
-
-
-    Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
-
   }
+
+
+  @Test()
+  public void testContactModification(){
+    Contacts before = app.contact().all();
+    ContactData modifyContact = before.iterator().next();
+    ContactData contact = new ContactData().withFirstName("Owasy").withLastname("KpuBo").withMail("azino333@mail.ru").withNumber("89111226644").withGroup(null);
+    app.contact().modifyContact(contact);
+    Contacts after = app.contact().all();
+
+
+    assertThat(after.size(),equalTo(before.size()));
+    assertThat(after, equalTo(before.withOut(modifyContact).withAdded(contact)));
+  }
+
+
 }
