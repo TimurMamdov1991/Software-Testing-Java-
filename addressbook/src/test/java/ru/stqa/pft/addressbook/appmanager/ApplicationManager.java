@@ -46,13 +46,6 @@ public class ApplicationManager {
     wd.quit();
   }
 
-
-
-
-  public SessionHelper getSessionHelper() {
-    return sessionHelper;
-  }
-
   public GroupHelper group() {
     return groupHelper;
   }

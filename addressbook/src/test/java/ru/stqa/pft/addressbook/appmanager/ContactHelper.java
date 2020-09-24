@@ -15,9 +15,6 @@ public class ContactHelper extends HelperBase{
     super(wd);
   }
 
-  public void returnHomePage() {
-    click(By.linkText("home page"));
-  }
 
   public void submitContactCreation() {
     click(By.xpath("(//input[@name='submit'])[2]"));
@@ -52,22 +49,21 @@ public class ContactHelper extends HelperBase{
     click(By.xpath("//input[@value='Delete']"));
   }
 
-  public void delete(ContactData contact) {
-    selectContactById(contact.getId());
-    deleteContact();
-    alertContact();
-    getContactPage();
-  }
-
   public void createContact(ContactData contactData, boolean b) {
     initContact();
     fillContactPage(contactData, true);
     submitContactCreation();
-    returnHomePage();
   }
 
+  public void delete(ContactData contact) {
+    selectContactById(contact.getId());
+    deleteContact();
+    alertContact();
+  }
+
+
   public void modifyContact(ContactData contact) {
-    selectEdit();
+    modifyContactById(contact.getId());
     fillContactPage(contact,false);
     updateContactPage();
     getContactPage();
@@ -81,8 +77,8 @@ public class ContactHelper extends HelperBase{
     click(By.linkText("home"));
   }
 
-  public void selectEdit() {
-    wd.findElement(By.xpath("(//img[@alt='Edit'])")).click();
+  public void modifyContactById(int id) {
+    wd.findElement(By.xpath("//a[contains(@href,'edit.php?id=" + id + "')]")).click();
   }
 
   public Contacts all() {
