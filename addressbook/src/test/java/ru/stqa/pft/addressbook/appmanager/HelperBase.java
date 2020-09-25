@@ -1,7 +1,6 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
@@ -31,6 +30,7 @@ public class HelperBase {
 
   public void alertContact() {
     wd.switchTo().alert().accept();
+    wd.findElement(By.cssSelector("div.msgbox"));
   }
 
   public boolean isElementPresent(By locator) {

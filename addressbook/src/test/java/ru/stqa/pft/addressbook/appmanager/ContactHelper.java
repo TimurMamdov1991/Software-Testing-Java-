@@ -40,7 +40,7 @@ public class ContactHelper extends HelperBase{
 
 
   public void updateContactPage() {
-    click(By.xpath("(//input[@name='update'])"));
+    click(By.xpath("(//input[@name='update'])[2]"));
   }
 
 
@@ -66,16 +66,13 @@ public class ContactHelper extends HelperBase{
     modifyContactById(contact.getId());
     fillContactPage(contact,false);
     updateContactPage();
-    getContactPage();
   }
 
   public void selectContactById(int id) {
     wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
   }
 
-  public void getContactPage() {
-    click(By.linkText("home"));
-  }
+
 
   public void modifyContactById(int id) {
     wd.findElement(By.xpath("//a[contains(@href,'edit.php?id=" + id + "')]")).click();

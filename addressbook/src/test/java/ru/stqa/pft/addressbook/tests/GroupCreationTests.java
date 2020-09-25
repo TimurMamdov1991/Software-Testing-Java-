@@ -11,13 +11,13 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupCreationTests extends TestBase {
 
-  @Test
+  @Test(enabled = false)
   public void testGroupCreation() {
     app.goTo().GroupPage();
-    Groups before = (Groups) app.group().all();
+    Groups before = app.group().all();
     GroupData group = new GroupData().withName("Test1").withHeader("123").withFooter("345");
     app.group().create(group);
-    Groups after = (Groups) app.group().all();
+    Groups after = app.group().all();
     assertThat(after.size(), equalTo(before.size() +1));
 
 
