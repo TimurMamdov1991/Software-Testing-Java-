@@ -28,7 +28,9 @@ public class ContactModificationTests extends TestBase {
   public void testContactModification(){
     Contacts before = app.contact().all();
     ContactData modifyContact = before.iterator().next();
+    app.contact().modifyContactById(modifyContact.getId());
     ContactData contact = new ContactData()
+        .withId(modifyContact.getId())
         .withFirstName("Рататуй")
         .withLastname("KpuBo")
         .withMail("azino333@mail.ru")
