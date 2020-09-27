@@ -15,16 +15,18 @@ public class ContactModificationTests extends TestBase {
     if (app.contact().all().size() == 0) {
       app.contact().createContact(new ContactData()
           .withFirstName("Tima")
-          .withLastname("Puba")
+          .withLastName("Puba")
           .withMail("azino333@mail.ru")
-          .withNumber("89111226644")
-          .withGroup("Test1"), true);
+          .withGroup("Test1")
+          .withMobilePhone("24443")
+          .withHomePhone("5533333")
+          .withWorkPhone("222311"), true);
       app.goTo().gotoHome();
     }
   }
 
 
-  @Test()
+  @Test
   public void testContactModification(){
     Contacts before = app.contact().all();
     ContactData modifyContact = before.iterator().next();
@@ -32,9 +34,11 @@ public class ContactModificationTests extends TestBase {
     ContactData contact = new ContactData()
         .withId(modifyContact.getId())
         .withFirstName("Рататуй")
-        .withLastname("KpuBo")
+        .withLastName("KpuBo")
         .withMail("azino333@mail.ru")
-        .withNumber("89111226644")
+        .withMobilePhone("222333")
+        .withHomePhone("555333")
+        .withWorkPhone("222311")
         .withGroup(null);
     app.contact().modifyContact(contact);
     app.goTo().gotoHome();

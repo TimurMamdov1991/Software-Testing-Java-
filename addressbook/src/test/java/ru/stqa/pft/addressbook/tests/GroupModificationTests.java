@@ -23,21 +23,18 @@ public class GroupModificationTests extends TestBase {
     }
   }
 
-  @Test(enabled = false)
+  @Test
   public void testGroupModification(){
     Groups before = app.group().all();
     GroupData modifyGroup = before.iterator().next();
     GroupData group = new GroupData()
         .withId(modifyGroup.getId())
-        .withName("Ops")
-        .withHeader("123")
-        .withFooter("345");
+        .withName("Test1")
+        .withHeader("444")
+        .withFooter("555");
     app.group().modify(group);
+    Assert.assertEquals(app.group().count(),before.size());
     Groups after = app.group().all();
-    Assert.assertEquals(after.size(),before.size());
-
-
-
     Assert.assertEquals(before, after);
     assertThat(after, equalTo(before.withOut(modifyGroup).withAdded(group)));
   }
