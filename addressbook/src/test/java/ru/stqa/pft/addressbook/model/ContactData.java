@@ -6,11 +6,17 @@ public class ContactData {
   private int id = Integer.MAX_VALUE;
   private String firstName;
   private String lastname;
-  private String mail;
+  private String address;
   private String group;
   private String homePhone;
   private String mobilePhone;
   private String workPhone;
+  private String allPhones;
+  private String email;
+  private String email2;
+  private String allEmails;
+
+
 
 
   public ContactData withFirstName(String firstName) {
@@ -21,8 +27,8 @@ public class ContactData {
     this.lastname = lastname;
     return this;
   }
-  public ContactData withMail(String mail) {
-    this.mail = mail;
+  public ContactData withAddress(String address) {
+    this.address = address;
     return this;
   }
   public ContactData withGroup(String group) {
@@ -41,6 +47,22 @@ public class ContactData {
     this.workPhone = workPhone;
     return this;
   }
+  public ContactData withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
+  }
+  public ContactData withEmail(String email) {
+    this.email = email;
+    return this;
+  }
+  public ContactData withEmail2(String email2) {
+    this.email2 = email2;
+    return this;
+  }
+  public ContactData withAllEmails(String allEmails) {
+    this.allEmails = allEmails;
+    return this;
+  }
   public ContactData withId(int id) {
     this.id = id;
     return this;
@@ -50,11 +72,23 @@ public class ContactData {
 
   public String getFirstName() { return firstName; }
   public String getMiddleName() { return lastname; }
-  public String getMail() { return mail; }
+  public String getAddress() { return address; }
   public String getGroup() { return group; }
   public String getHomePhone() { return homePhone; }
   public String getMobilePhone() { return mobilePhone; }
   public String getWorkPhone() { return workPhone; }
+  public String getAllPhones() {
+    return allPhones;
+  }
+  public String getEmail() {
+    return email;
+  }
+  public String getEmail2() {
+    return email2;
+  }
+  public String getAllEmails() {
+    return allEmails;
+  }
   public int getId() { return id; }
 
 
