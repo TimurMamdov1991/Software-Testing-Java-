@@ -104,6 +104,7 @@ public class ContactHelper extends HelperBase{
     String work = wd.findElement(By.name("work")).getAttribute("value");
     String email = wd.findElement(By.name("email")).getAttribute("value");
     String email2 = wd.findElement(By.name("email2")).getAttribute("value");
+    String email3 = wd.findElement(By.name("email3")).getAttribute("value");
     wd.navigate().back();
     return new ContactData()
         .withId(contact.getId())
@@ -114,7 +115,8 @@ public class ContactHelper extends HelperBase{
         .withMobilePhone(mobile)
         .withWorkPhone(work)
         .withEmail(email)
-        .withEmail2(email2);
+        .withEmail2(email2)
+        .withEmail3(email3);
   }
 
 }
