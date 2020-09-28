@@ -22,14 +22,20 @@ public class ContactHelper extends HelperBase{
   public void fillContactPage(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getFirstName());
     type(By.name("lastname"), contactData.getMiddleName());
+    attach(By.name("photo"), contactData.getPhoto());
     type(By.name("address"), contactData.getAddress());
     type(By.name("home"), contactData.getHomePhone());
     type(By.name("mobile"), contactData.getMobilePhone());
     type(By.name("work"), contactData.getWorkPhone());
+    type(By.name("email"), contactData.getEmail());
+    type(By.name("email2"), contactData.getEmail2());
+    type(By.name("email3"), contactData.getEmail3());
 
 
     if (creation){
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+      if (contactData.getGroup() != null) { new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+      }
+
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }

@@ -21,9 +21,7 @@ public class ContactData {
 
 
 
-  public void setPhoto(File photo) {
-    this.photo = photo;
-  }
+
 
   public ContactData withFirstName(String firstName) {
     this.firstName = firstName;
@@ -75,6 +73,10 @@ public class ContactData {
   }
   public ContactData withId(int id) {
     this.id = id;
+    return this;
+  }
+  public ContactData withPhoto(File photo) {
+    this.photo = photo;
     return this;
   }
 
