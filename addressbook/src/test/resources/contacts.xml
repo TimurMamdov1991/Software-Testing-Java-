@@ -1,0 +1,22 @@
+<list>
+  <contact>
+    <firstName>Tima 0</firstName>
+    <lastname>Mamedov 0</lastname>
+    <homePhone>222444 0</homePhone>
+    <mobilePhone>222333 0</mobilePhone>
+    <workPhone>111444 0</workPhone>
+    <email>222333@wqwe.ew 0</email>
+    <email2>qwe@qwe.er 0</email2>
+    <email3>qweq@ds.qw 0</email3>
+  </contact>
+  <contact>
+    <firstName>Tima 1</firstName>
+    <lastname>Mamedov 1</lastname>
+    <homePhone>222444 1</homePhone>
+    <mobilePhone>222333 1</mobilePhone>
+    <workPhone>111444 1</workPhone>
+    <email>222333@wqwe.ew 1</email>
+    <email2>qwe@qwe.er 1</email2>
+    <email3>qweq@ds.qw 1</email3>
+  </contact>
+</list>
