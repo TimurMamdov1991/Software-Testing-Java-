@@ -24,7 +24,8 @@ dependencies {
 
     testCompile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
 
-    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.19'
+    implementation 'mysql:mysql-connector-java:8.0.21'
+    implementation 'org.hibernate:hibernate-core:5.4.22.Final'
 }
 
 task testGroups(type: Test){
