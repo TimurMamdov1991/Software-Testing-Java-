@@ -43,3 +43,9 @@ out/
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
 *.log
+addressbook/.idea/uiDesigner.xml
+addressbook/.idea/vcs.xml
+addressbook/.idea/workspace.xml
+addressbook/.idea/modules/addressbook.iml
+addressbook/.idea/compiler.xml
+*.xml

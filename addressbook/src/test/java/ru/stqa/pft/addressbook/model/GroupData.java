@@ -5,7 +5,6 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.hibernate.annotations.Type;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -37,7 +36,6 @@ public class GroupData {
   @Column(name = "group_footer")
   @Type(type = "text")
   private String footer;
-
 
   public String getName() {
     return name;
