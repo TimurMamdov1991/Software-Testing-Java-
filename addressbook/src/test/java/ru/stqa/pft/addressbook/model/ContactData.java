@@ -1,7 +1,6 @@
 package ru.stqa.pft.addressbook.model;
 
 import com.google.gson.annotations.Expose;
-import com.sun.xml.bind.v2.model.core.ID;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.hibernate.annotations.Type;
@@ -26,10 +25,12 @@ public class ContactData {
 
   @Expose
   @Column(name = "lastname")
-  private String lastname;
+  private String lastName;
 
 
-  @Transient
+  @Expose
+  @Column(name = "address")
+  @Type(type = "text")
   private String address;
 
   @Transient
@@ -50,16 +51,18 @@ public class ContactData {
   @Type(type = "text")
   private String workPhone;
 
-  @Transient
   @Expose
+  @Column(name = "email")
+  @Type(type = "text")
   private String email;
 
-  @Transient
-  @Expose
+  @Column(name = "email2")
+  @Type(type = "text")
   private String email2;
 
-  @Transient
-  @Expose
+
+  @Column(name = "email3")
+  @Type(type = "text")
   private String email3;
 
 
@@ -72,16 +75,36 @@ public class ContactData {
   @Type(type = "text")
   private String photo;
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ContactData that = (ContactData) o;
+    return id == that.id &&
+        Objects.equals(firstName, that.firstName) &&
+        Objects.equals(lastName, that.lastName);
+  }
 
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, firstName, lastName);
+  }
 
-
+  @Override
+  public String toString() {
+    return "ContactData{" +
+        "id=" + id +
+        ", firstName='" + firstName + '\'' +
+        ", lastName='" + lastName + '\'' +
+        '}';
+  }
 
   public ContactData withFirstName(String firstName) {
     this.firstName = firstName;
     return this;
   }
   public ContactData withLastName(String lastname) {
-    this.lastname = lastname;
+    this.lastName = lastname;
     return this;
   }
   public ContactData withAddress(String address) {
@@ -136,7 +159,7 @@ public class ContactData {
 
 
   public String getFirstName() { return firstName; }
-  public String getMiddleName() { return lastname; }
+  public String getMiddleName() { return lastName; }
   public String getAddress() { return address; }
   public String getGroup() { return group; }
   public String getHomePhone() { return homePhone; }
@@ -163,28 +186,6 @@ public class ContactData {
   public int getId() { return id; }
 
 
-  @Override
-  public String toString() {
-    return "ContactData{" +
-        "id=" + id +
-        ", firstName='" + firstName + '\'' +
-        ", lastname='" + lastname + '\'' +
-        '}';
-  }
 
-  @Override
-  public boolean equals(Object o) {
-    if(this == o) return true;
-    if(o == null || getClass() != o.getClass()) return false;
-    ContactData that = (ContactData) o;
-    return id == that.id &&
-        Objects.equals(firstName, that.firstName) &&
-        Objects.equals(lastname, that.lastname);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, firstName, lastname);
-  }
 
 }

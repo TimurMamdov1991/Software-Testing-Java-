@@ -22,7 +22,7 @@ public class ContactHelper extends HelperBase{
   public void fillContactPage(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getFirstName());
     type(By.name("lastname"), contactData.getMiddleName());
-    attach(By.name("photo"), contactData.getPhoto());
+    //attach(By.name("photo"), contactData.getPhoto());
     type(By.name("address"), contactData.getAddress());
     type(By.name("home"), contactData.getHomePhone());
     type(By.name("mobile"), contactData.getMobilePhone());
@@ -65,7 +65,8 @@ public class ContactHelper extends HelperBase{
     alertContact();
   }
 
-  public void modifyContact(ContactData contact) { ;
+  public void modifyContact(ContactData contact) {
+    modifyContactById(contact.getId());
     fillContactPage(contact,false);
     updateContactPage();
   }
@@ -78,8 +79,14 @@ public class ContactHelper extends HelperBase{
     wd.findElement(By.xpath("//a[contains(@href,'edit.php?id=" + id + "')]")).click();
   }
 
+  private Contacts contactCache = null;
+
   public Contacts all() {
-    Contacts contacts = new Contacts();
+    if (contactCache != null) {
+      return new Contacts(contactCache);
+    }
+
+    contactCache = new Contacts();
     List<WebElement> rows = wd.findElements(By.name("entry"));
     for (WebElement row : rows) {
       int id = Integer.parseInt(row.findElement(By.tagName("input")).getAttribute("value"));
@@ -88,7 +95,7 @@ public class ContactHelper extends HelperBase{
       String address = row.findElement(By.cssSelector("td:nth-child(4)")).getText();
       String allEmails = row.findElement(By.cssSelector("td:nth-child(5)")).getText();
       String allPhones = row.findElement(By.cssSelector("td:nth-child(6)")).getText();
-      contacts.add(new ContactData()
+      contactCache.add(new ContactData()
           .withId(id)
           .withFirstName(firstName)
           .withLastName(lastName)
@@ -96,7 +103,7 @@ public class ContactHelper extends HelperBase{
           .withAllPhones(allPhones)
           .withAllEmails(allEmails));
     }
-    return contacts;
+    return contactCache;
   }
 
 
@@ -123,6 +130,10 @@ public class ContactHelper extends HelperBase{
         .withEmail(email)
         .withEmail2(email2)
         .withEmail3(email3);
+  }
+
+  public int count() {
+    return wd.findElements(By.xpath("//img[@alt='Edit']")).size();
   }
 
 }
