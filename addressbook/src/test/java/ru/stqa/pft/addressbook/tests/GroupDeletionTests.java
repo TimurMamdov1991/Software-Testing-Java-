@@ -13,7 +13,7 @@ public class GroupDeletionTests extends TestBase {
   @BeforeMethod
   public void ensurePreconditions(){
     if (app.db().groups().size() == 0) {
-      app.goTo().GroupPage();
+      app.goTo().groupPage();
       app.group().create(new GroupData().withName("Test1"));
     }
   }
@@ -22,7 +22,7 @@ public class GroupDeletionTests extends TestBase {
   public void testUntitledTestCase() {
     Groups before = app.db().groups();
     GroupData deleteGroup = before.iterator().next();
-    app.goTo().GroupPage();
+    app.goTo().groupPage();
     app.group().delete(deleteGroup);
     assertThat(app.group().count(), equalTo(before.size() -1));
     Groups after = app.db().groups();

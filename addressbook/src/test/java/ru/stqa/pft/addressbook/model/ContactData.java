@@ -7,12 +7,15 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @XStreamAlias("contact")
 @Entity
 @Table(name = "addressbook")
 public class ContactData {
+
 
   @XStreamOmitField
   @Id
@@ -32,9 +35,6 @@ public class ContactData {
   @Column(name = "address")
   @Type(type = "text")
   private String address;
-
-  @Transient
-  private String group;
 
   @Expose
   @Column(name = "home")
@@ -75,6 +75,11 @@ public class ContactData {
   @Type(type = "text")
   private String photo;
 
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name = "address_in_groups",
+      joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+  private Set<GroupData> groups = new HashSet<GroupData>();
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -111,10 +116,11 @@ public class ContactData {
     this.address = address;
     return this;
   }
-  public ContactData withGroup(String group) {
-    this.group = group;
-    return this;
+
+  public Groups getGroups() {
+    return new Groups(groups);
   }
+
   public ContactData withHomePhone(String homePhone) {
     this.homePhone = homePhone;
     return this;
@@ -161,7 +167,6 @@ public class ContactData {
   public String getFirstName() { return firstName; }
   public String getMiddleName() { return lastName; }
   public String getAddress() { return address; }
-  public String getGroup() { return group; }
   public String getHomePhone() { return homePhone; }
   public String getMobilePhone() { return mobilePhone; }
   public String getWorkPhone() { return workPhone; }
