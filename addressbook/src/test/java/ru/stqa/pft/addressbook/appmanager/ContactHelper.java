@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.List;
 
@@ -64,19 +66,6 @@ public class ContactHelper extends HelperBase{
     modifyContactById(contact.getId());
     fillContactPage(contact,false);
     updateContactPage();
-  }
-
-  public void contAddGroup(ContactData contact){
-    selectContactById(contact.getId());
-    addTo();
-  }
-
-  public void contDeleteGroup(ContactData contact){
-    takeGroup();
-    takeGroupClick();
-    selectContactById(contact.getId());
-    remove();
-
   }
 
   public void addTo() {
@@ -160,4 +149,49 @@ public class ContactHelper extends HelperBase{
     return wd.findElements(By.xpath("//img[@alt='Edit']")).size();
   }
 
+  public GroupData addContactToGroup(ContactData contact, Groups groupsInDB) {
+    for (GroupData groupInDB: groupsInDB){
+      if (!contact.getGroups().contains(groupInDB)) {
+        addToGroup(contact.getId(), groupInDB.getId());
+        return groupInDB;
+      }
+    }
+    return null;
+  }
+
+  public void addToGroup(int id, int groupId) {
+    gotoHome();
+    selectContactById(id);
+    click(By.xpath("//select[@name='to_group']//option[@value='"+groupId+"']"));
+    click(By.name("add"));
+    gotoHome();
+  }
+
+  public void gotoHome() {
+    if (isElementPresent(By.id("maintable"))) {
+      return;
+    }
+    click(By.linkText("home"));
+  }
+
+  public ContactData deleteContactFromGroup(Contacts contacts, Groups groupsInDB) {
+    for (ContactData contact: contacts) {
+      for (GroupData group : groupsInDB) {
+        if (group.getContacts().contains(contact)){
+          deleteFromGroup(contact.getId(), group.getId());
+          return contact;
+        }
+      }
+    }
+    return null;
+  }
+
+  public void deleteFromGroup(int id, int groupID) {
+    gotoHome();
+    click(By.xpath("//select[@name='group']//option[@value='"+groupID+"']"));
+    selectContactById(id);
+    click(By.name("remove"));
+    gotoHome();
+    click(By.xpath("//select[@name='group']//option[@value='']"));
+  }
 }

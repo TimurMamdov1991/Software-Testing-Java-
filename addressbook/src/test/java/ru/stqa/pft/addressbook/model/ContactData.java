@@ -14,7 +14,7 @@ import java.util.Set;
 @XStreamAlias("contact")
 @Entity
 @Table(name = "addressbook")
-public class ContactData {
+public class ContactData extends GroupData {
 
 
   @XStreamOmitField
@@ -121,6 +121,9 @@ public class ContactData {
     return new Groups(groups);
   }
 
+
+
+
   public ContactData withHomePhone(String homePhone) {
     this.homePhone = homePhone;
     return this;
@@ -162,7 +165,10 @@ public class ContactData {
     return this;
   }
 
-
+  public ContactData withAddedGroup(GroupData group) {
+    this.groups.add(group);
+    return this;
+  }
 
   public String getFirstName() { return firstName; }
   public String getMiddleName() { return lastName; }
