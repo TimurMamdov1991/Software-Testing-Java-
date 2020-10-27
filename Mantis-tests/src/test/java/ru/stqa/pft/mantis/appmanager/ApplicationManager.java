@@ -13,81 +13,103 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
+    private final Properties properties;
+    public WebDriver wd;
 
-  private final Properties properties;
-  private WebDriver wd;
+    private String browser;
+    private RegistrationHelper regisrationHelper;
+    private FtpHelper ftp;
+    private MailHelper mailHelper;
+    private JamesHelper jamesHelper;
+    private DbHelper dbHelper;
+    private UiHelperBase uiHelper;
+    private SoapHelper soapHelper;
 
-  private String browser;
-  private RegistrationHelper registrationHelper;
-  private FtpHelper ftp;
-  private MailHelper mailHelper;
-
-
-  public ApplicationManager(String browser) throws IOException {
-    this.browser = browser;
-    properties = new Properties();
-  }
-
-  public void init() throws IOException {
-    String target = System.getProperty("target", "local");
-    properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
-  }
-
-
-
-  public String getProperty(String key) {
-    return properties.getProperty(key);
-  }
-
-
-  public void stop() {
-    if (wd != null) {
-      wd.quit();
+    public ApplicationManager(String browser) {
+        this.browser = browser;
+        properties = new Properties();
     }
-  }
 
-  public HttpSession httpSession() {
-    return new HttpSession(this);
-  }
-
-  public RegistrationHelper registration() {
-    if(registrationHelper == null) {
-      registrationHelper = new RegistrationHelper(this);
+    public void init() throws IOException {
+        String target = System.getProperty("target", "local");
+        properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
     }
-    return registrationHelper;
-  }
 
-  public FtpHelper ftp(){
-    if(ftp == null) {
-      ftp = new FtpHelper(this);
+    public void stop() {
+        if (wd != null) {
+            wd.quit();
+        }
     }
-    return ftp;
-  }
 
-  public MailHelper mail(){
-    if(mailHelper == null) {
-      mailHelper = new MailHelper(this);
+    public HttpSession newSession() {
+        return new HttpSession(this);
     }
-    return mailHelper;
-  }
 
-  public WebDriver getDriver(){
-    if(wd == null){
-      if (browser.equals(BrowserType.FIREFOX)) {
-        wd = new FirefoxDriver();
-      } else if (browser.equals(BrowserType.CHROME)) {
-        wd = new ChromeDriver();
-      } else if (browser.equals(BrowserType.IE)) {
-        wd = new InternetExplorerDriver();
-      }
-      wd.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-      wd.get(properties.getProperty("web.baseUrl"));
+    public String getProperty(String key) {
+        return properties.getProperty(key);
     }
-    return wd;
-  }
 
-  public HttpSession newSession() {
-    return null;
-  }
+    public RegistrationHelper registration() {
+        if (regisrationHelper == null) {
+            regisrationHelper = new RegistrationHelper(this);
+        }
+        return regisrationHelper;
+    }
+
+    public FtpHelper ftp() {
+        if (ftp == null) {
+            ftp = new FtpHelper(this);
+        }
+        return ftp;
+    }
+
+    public WebDriver getDriver() {
+        if (wd == null) {
+            if (browser.equals(BrowserType.CHROME)) {
+                wd = new ChromeDriver();
+            } else if (browser.equals(BrowserType.FIREFOX)) {
+                wd = new FirefoxDriver();
+            } else if (browser.equals(BrowserType.IE)) {
+                wd = new InternetExplorerDriver();
+            }
+            wd.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+            wd.get(properties.getProperty("web.baseUrl"));
+        }
+        return wd;
+    }
+
+    public MailHelper mail() {
+        if (mailHelper == null) {
+            mailHelper = new MailHelper(this);
+        }
+        return mailHelper;
+    }
+
+    public JamesHelper james() {
+        if (jamesHelper == null) {
+            jamesHelper = new JamesHelper(this);
+        }
+        return jamesHelper;
+    }
+
+    public DbHelper db() {
+        if (dbHelper == null) {
+            dbHelper = new DbHelper(this);
+        }
+        return dbHelper;
+    }
+
+    public UiHelperBase ui() {
+        if (uiHelper == null) {
+            uiHelper = new UiHelperBase(this);
+        }
+        return uiHelper;
+    }
+
+    public SoapHelper soap() {
+        if (soapHelper == null) {
+            soapHelper = new SoapHelper(this);
+        }
+        return soapHelper;
+    }
 }
-
