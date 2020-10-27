@@ -1,13 +1,8 @@
 package ru.stqa.pft.addressbook.tests;
 
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-import ru.stqa.pft.addressbook.model.*;
-
-import java.util.List;
-
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
+import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 public class ContactDeleteGroup extends TestBase {
 
@@ -27,7 +22,7 @@ public class ContactDeleteGroup extends TestBase {
     }
   }
 
-
+/*
   @Test
   public void testContactDeleteGroup() {
 
@@ -52,5 +47,5 @@ public class ContactDeleteGroup extends TestBase {
     assertThat(afterAllContacts.stream().filter((c)->c.getId()==deletedContact.getId()).findFirst().get().getGroups()
         , equalTo(deletedContact.getGroups()));
 
-  }
+  }*/
 }

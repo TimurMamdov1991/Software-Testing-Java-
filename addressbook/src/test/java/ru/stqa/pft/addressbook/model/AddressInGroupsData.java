@@ -1,5 +1,6 @@
 package ru.stqa.pft.addressbook.model;
 
+
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
@@ -20,7 +21,6 @@ public class AddressInGroupsData  {
   @Column(name = "id",unique=true)
 
   private int id;
-
 
 
 

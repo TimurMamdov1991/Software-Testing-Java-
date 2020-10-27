@@ -42,8 +42,6 @@ public class GroupData {
     return new Contacts(contacts);
   }
 
-
-
   public String getName() {
     return name;
   }
