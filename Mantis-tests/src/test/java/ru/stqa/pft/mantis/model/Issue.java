@@ -2,6 +2,7 @@ package ru.stqa.pft.mantis.model;
 
 public class Issue {
 
+
     private int id;
     private String summary;
     private String description;

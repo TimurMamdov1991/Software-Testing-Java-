@@ -23,6 +23,7 @@ public class SoapTests extends TestBase{
         }
     }
 
+
     @Test
     public void testCreateIssue() throws MalformedURLException, ServiceException, RemoteException  {
         skipIfNotFixed(0000002);

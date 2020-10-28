@@ -2,6 +2,7 @@ package ru.stqa.pft.mantis.model;
 
 public class Project {
 
+
     private int id;
     private String name;
 
