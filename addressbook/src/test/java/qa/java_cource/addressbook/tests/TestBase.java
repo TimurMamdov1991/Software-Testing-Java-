@@ -1,7 +1,5 @@
 package qa.java_cource.addressbook.tests;
 
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
 import org.openqa.selenium.remote.BrowserType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +13,6 @@ import qa.java_cource.addressbook.model.Contacts;
 import qa.java_cource.addressbook.model.GroupData;
 import qa.java_cource.addressbook.model.Groups;
 
-import java.lang.reflect.Member;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -32,7 +29,7 @@ public class TestBase {
 
   @BeforeSuite (alwaysRun = true)
   public void setUp() throws Exception {
-    app = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
+    app = new ApplicationManager(System.getProperty("browser", BrowserType.FIREFOX));
     app.init();
   }
 
