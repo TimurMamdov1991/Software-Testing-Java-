@@ -1,23 +1,26 @@
 <list>
-  <contact>
+  <qa.java__cource.addressbook.model.ContactData>
+    <id>2147483647</id>
     <firstName>first name 0</firstName>
     <lastName>last name 0</lastName>
     <address>address 0</address>
     <mobilePhone>mobile 0</mobilePhone>
     <email>email 0</email>
-  </contact>
-  <contact>
+  </qa.java__cource.addressbook.model.ContactData>
+  <qa.java__cource.addressbook.model.ContactData>
+    <id>2147483647</id>
     <firstName>first name 1</firstName>
     <lastName>last name 1</lastName>
     <address>address 1</address>
     <mobilePhone>mobile 1</mobilePhone>
     <email>email 1</email>
-  </contact>
-  <contact>
+  </qa.java__cource.addressbook.model.ContactData>
+  <qa.java__cource.addressbook.model.ContactData>
+    <id>2147483647</id>
     <firstName>first name 2</firstName>
     <lastName>last name 2</lastName>
     <address>address 2</address>
     <mobilePhone>mobile 2</mobilePhone>
     <email>email 2</email>
-  </contact>
+  </qa.java__cource.addressbook.model.ContactData>
 </list>
